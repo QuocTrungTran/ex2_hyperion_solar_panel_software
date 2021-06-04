@@ -30,7 +30,7 @@
  * @return
  * 		1 == success
  */
-unsigned char adc_init(int slave_addr, int channel) {
+unsigned char adc_init(uint8_t slave_addr, uint8_t channel) {
     int delay;
     // adc_set_command_reg(1<<7,0,0,1,0,1); // this is hardcoded
     adc_set_command_reg(slave_addr, channel, 0, 1, 1, 0, 1);
@@ -63,7 +63,7 @@ void adc_write(uint8_t *buf, int size, uint8_t slave_addr) {
 
     /* Wait until Bus Busy is cleared */
     while(i2cIsBusBusy(ADC_i2c_PORT) == true);
-
+    i2cSetStop(ADC_i2c_PORT);
     /* Wait until Stop is detected */
     //while(i2cIsStopDetected(ADC_i2c_PORT) == 0);
     /* Clear the Stop condition */
@@ -87,7 +87,7 @@ void adc_read(uint8_t *data, uint32_t length, uint8_t slave_addr) {
     i2cReceive(ADC_i2c_PORT,length,data);
 
     /* Wait until Bus Busy is cleared */
-    while(i2cIsBusBusy(i2cREG1) == true);
+    //while(i2cIsBusBusy(i2cREG1) == true);
 
     /* Wait until Stop is detected */
     while(i2cIsStopDetected(i2cREG1) == 0);
@@ -132,7 +132,7 @@ void adc_end_request() {
  * @return
  * 		None
  */
-void adc_set_command_reg(int slave_addr,
+void adc_set_command_reg(uint8_t slave_addr,
                             uint8_t channel,
                             uint8_t ext_ref,
                             uint8_t tsense,
@@ -160,7 +160,7 @@ void adc_set_command_reg(int slave_addr,
     control_reg_val = control_reg_value;
 }
 
-void adc_set_register_pointer(int slave_addr, uint8_t reg_sel) {
+void adc_set_register_pointer(uint8_t slave_addr, uint8_t reg_sel) {
     adc_write(&reg_sel, 1, slave_addr);
 }
 
@@ -180,7 +180,7 @@ void adc_set_register_pointer(int slave_addr, uint8_t reg_sel) {
  * @return
  * 		None
  */
-void adc_get_raw(int slave_addr, unsigned short *data, unsigned char *ch)
+void adc_get_raw(uint8_t slave_addr, unsigned short *data, unsigned char *ch)
 {  
     unsigned char buffer[2] = {0,0};
     //unsigned short buffer_H = 0;
@@ -349,7 +349,7 @@ float adc_calculate_sensor_pd(unsigned short value, float vref)
  * @return
  * 		Temperature value in celsius
  */
-float adc_get_tsense_temp(int slave_addr, float vref) {
+float adc_get_tsense_temp(uint8_t slave_addr, float vref) {
     int delay, i;
     unsigned short data = 0;
     unsigned char ch = 0;

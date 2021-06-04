@@ -133,7 +133,7 @@ typedef enum config_3_panel_t{
     CONFIG_3_PANEL_S2U,
     CONFIG_3_PANEL_SD2U,
     CONFIG_3_PANEL_Z2D
-}config_3_panel_t
+}config_3_panel_t;
 
 
 #endif

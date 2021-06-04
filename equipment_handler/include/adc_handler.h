@@ -93,8 +93,8 @@
 unsigned short control_reg_val;
 
 // Initialize ADC defaults
-unsigned char adc_init(int slave_addr, int channel);
-void adc_set_command_reg(int slave_addr,
+unsigned char adc_init(uint8_t slave_addr, uint8_t channel);
+void adc_set_command_reg(uint8_t slave_addr,
                                 uint8_t channel,
                                 uint8_t ext_ref,
                                 uint8_t tsense,
@@ -102,10 +102,10 @@ void adc_set_command_reg(int slave_addr,
                                 uint8_t reset,
                                 uint8_t autocycle);
 
-void adc_set_register_pointer(int slave_addr, uint8_t reg_sel);
+void adc_set_register_pointer(uint8_t slave_addr, uint8_t reg_sel);
 
 //return the raw value from the adc
-void adc_get_raw(int slave_addr, unsigned short *data, unsigned char *ch);
+void adc_get_raw(uint8_t slave_addr, unsigned short *data, unsigned char *ch);
 
 //calculate the vin voltage value
 float adc_calculate_vin(unsigned short value, float vref);
@@ -117,7 +117,7 @@ float adc_calculate_sensor_current(unsigned short value, float vref);
 float adc_calculate_sensor_pd(unsigned short value, float vref);
 
 // convert internal temp sensor value
-float adc_get_tsense_temp(int slave_addr, float vref);
+float adc_get_tsense_temp(uint8_t slave_addr, float vref);
 // convert all channels raw
 void adc_get_all_raw(void);
 
