@@ -13,7 +13,7 @@
  */
 /**
  * @file    common_defines.h
- * @author  Vasu Gupta
+ * @author  Vasu Gupta, Trung Tran
  * @date    2020-06-17
  */
 

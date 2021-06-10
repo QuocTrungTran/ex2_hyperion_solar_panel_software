@@ -1,8 +1,20 @@
 /*
- * hyperion.c
+ * Copyright (C) 2015  University of Alberta
  *
- *  Created on: May 26, 2021
- *      Author: tttru
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+/**
+ * @file    hyperion.c
+ * @author  Trung Tran
+ * @date    2020-06-04
  */
 #include "hyperion.h"
 
@@ -14,7 +26,7 @@
  * 		Temperature, photodiodes, voltage, and current values of a panel can be obtained via this function 
  *      Refer to Hyperion Detailed Design document
  * @attention
- * 		This function is only used for config 1, which includes Port, Port Deployable, Starboard, Startboard Deployable and Zenith
+ * 		This function is used for config 1, which only includes Port, Port Deployable, Starboard, Startboard Deployable and Zenith
  * @param panel
  * 		The panel that we want to retrieve data from 
  * @param channel
@@ -119,6 +131,25 @@ void hyperion_config_1_value(config_1_panel_t panel, config_1_channel_type_t cha
 }
 
 
+/**
+ * @brief
+ * 		Get the data from a panel and its corresponding channel
+ * @details
+ * 		Temperature, photodiodes, voltage, and current values of a panel can be obtained via this function 
+ *      Refer to Hyperion Detailed Design document
+ * @attention
+ * 		This function is used for config 2, which only includes Arke, Nadir, and Nadir 2U
+ * @param panel
+ * 		The panel that we want to retrieve data from 
+ * @param channel
+ * 		voltage channel corresponding to that panel
+ * @param temp
+ * 		The temperature in celcius
+ * @param pd
+ *      
+ * @return
+ * 		void
+ */
 void hyperion_config_2_value(config_2_panel_t panel, config_2_channel_type_t channel, float* temp, float* pd) {
     unsigned short data = 0;
     unsigned char ch = 0; // channel
@@ -161,6 +192,29 @@ void hyperion_config_2_value(config_2_panel_t panel, config_2_channel_type_t cha
     }
 }
 
+/**
+ * @brief
+ * 		Get the data from a panel and its corresponding channel
+ * @details
+ * 		Temperature, photodiodes, voltage, and current values of a panel can be obtained via this function 
+ *      Refer to Hyperion Detailed Design document
+ * @attention
+ * 		This function is used for config 3, which only includes Port2U, Port Deployable 2U, Starboard 2U, Startboard Deployable 2U and Zenith 2U
+ * @param panel
+ * 		The panel that we want to retrieve data from 
+ * @param channel
+ * 		voltage channel corresponding to that panel
+ * @param temp
+ * 		The temperature in celcius
+ * @param pd
+ *      
+ * @param voltage
+ *      The voltage in mV
+ * @param current
+ *      The current in mA
+ * @return
+ * 		void
+ */
  void hyperion_config_3_value(config_3_panel_t panel, config_3_channel_type_t channel, float* temp, float* pd, float* voltage, float* current) {
     unsigned short data = 0;
     unsigned char ch = 0; // channel
